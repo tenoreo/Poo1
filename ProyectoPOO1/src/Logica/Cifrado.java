@@ -1,14 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
+
+import org.apache.commons.codec.digest.DigestUtils;
 /**
  *
- * @author kenda
+ * @author kendall Tenorio Chévez
  */
 public class Cifrado {
+    private String codigoHash;
+    private String contrasena;
     
+    public String getCodigoHash(){
+        return codigoHash;
+    }
+    public void setCodigoHash(String pCodigoHash){
+        codigoHash=pCodigoHash;
+    }
+    /*
+    *
+    */
+    public String encriptar(String texto){
+        return DigestUtils.sha1Hex(texto);
+    }
+    /*
+    *
+    */
+    public String descriptar(String texto){
+    
+    }
 }
