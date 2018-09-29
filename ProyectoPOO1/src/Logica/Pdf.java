@@ -5,6 +5,9 @@
  */
 package Logica;
 
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
