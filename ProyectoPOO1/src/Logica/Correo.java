@@ -12,6 +12,7 @@ package Logica;
 public class Correo {
     private String correo="transportec2018@gmail.com";
     private String contrasena="transporteT.2018"; 
+    private static int pdfN;
 
     public Correo() {
     }
@@ -62,6 +63,11 @@ public class Correo {
     }
     
     public void enviarCorreo(){
+    
+    }
+    
+    public void enviarCorreoAdjunto(String pChofer,String pTelefono,String pPuntoSalida,String pFecha,String pHora,String[][] ListaViajeros){
+        
     
     }
     
