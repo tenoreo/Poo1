@@ -5,7 +5,13 @@
  */
 package Interfaz;
 
+import Logica.Xml;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.jdom2.Element;
 
 /**
  *
@@ -129,14 +135,35 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        String nombre=tfNombre.getText();
-        String departamento=tfDepart.getText();
-        String telefono=tfTelefono.getText();
-        String correo=tfCorreo.getText();
-        if(nombre.isEmpty() && departamento.isEmpty() && telefono.isEmpty() && correo.isEmpty())
-            JOptionPane.showMessageDialog(this, "Error! Datos Incompletos");
+        try {
+            String nombre=tfNombre.getText();
+            String departamento=tfDepart.getText();
+            String telefono=tfTelefono.getText();
+            String correo=tfCorreo.getText();
+            Xml xml=new Xml();
+            List<Usuario> listaUsuario=null;
+            if(nombre.isEmpty() && departamento.isEmpty() && telefono.isEmpty() && correo.isEmpty())
+                JOptionPane.showMessageDialog(this, "Error! Datos Incompletos");
+            else if(correoRepetido(correo))
+                JOptionPane.showMessageDialog(this, "Error! Este correo ya esta en el sistema");
+            else{
+                xml.escribirUsuario(nombre,departamento,correo,telefono);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(RegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    public boolean correoRepetido(String correo) throws IOException{
+        Xml verXml = new Xml();
+        List list=verXml.cargarUsuarios();
+        for ( int j = 0; j < list.size(); j++ ){//Se recorre cada nodo padre
+            Element campo = (Element)list.get( j );
+            String nombre = campo.getChildTextTrim("Correo");
+            if(correo.equals(nombre))//Equals para verifica si es el mismo
+                return true;
+        }return false;
+    }
     /**
      * @param args the command line arguments
      */

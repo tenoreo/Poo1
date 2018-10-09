@@ -28,12 +28,11 @@ public class Usuario {
     private long telefono;
     private String contrasenia;
 
-    public Usuario(String nombre, String departamento, String nombreUsuario, long telefono, String contrasenia) {
+    public Usuario(String nombre, String departamento, String nombreUsuario, long telefono) {
         this.nombre = nombre;
         this.departamento = departamento;
         this.nombreUsuario = nombreUsuario;
         this.telefono = telefono;
-        this.contrasenia = contrasenia;
     }
 
     public String getNombre() {
