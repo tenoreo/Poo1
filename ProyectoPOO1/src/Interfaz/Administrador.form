@@ -101,6 +101,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar Chofer"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRChoferActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRVehiculo">
       <Properties>
@@ -109,6 +112,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar Vehiculo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRVehiculoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLViaje">
       <Properties>
@@ -117,6 +123,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Listar Viajes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLViajeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnConsultar">
       <Properties>
@@ -125,6 +134,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Consultar Datos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
@@ -133,6 +145,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

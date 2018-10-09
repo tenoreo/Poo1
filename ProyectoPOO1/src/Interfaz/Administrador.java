@@ -50,18 +50,43 @@ public class Administrador extends javax.swing.JFrame {
 
         btnRChofer.setFont(new java.awt.Font("Consolas", 3, 18)); // NOI18N
         btnRChofer.setText("Registrar Chofer");
+        btnRChofer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRChoferActionPerformed(evt);
+            }
+        });
 
         btnRVehiculo.setFont(new java.awt.Font("Consolas", 3, 18)); // NOI18N
         btnRVehiculo.setText("Registrar Vehiculo");
+        btnRVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRVehiculoActionPerformed(evt);
+            }
+        });
 
         btnLViaje.setFont(new java.awt.Font("Consolas", 3, 18)); // NOI18N
         btnLViaje.setText("Listar Viajes");
+        btnLViaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLViajeActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setFont(new java.awt.Font("Consolas", 3, 18)); // NOI18N
         btnConsultar.setText("Consultar Datos");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setFont(new java.awt.Font("Consolas", 3, 18)); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,8 +135,46 @@ public class Administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRUsuarioActionPerformed
-        
+        RegistrarUsuario ventana=new RegistrarUsuario();
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_btnRUsuarioActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        PantallaInicio ventana=new PantallaInicio();
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnLViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLViajeActionPerformed
+        ListarViajes ventana=new ListarViajes();
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_btnLViajeActionPerformed
+
+    private void btnRChoferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRChoferActionPerformed
+        RegistrarChofer ventana=new RegistrarChofer();
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_btnRChoferActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        /*RegistrarChofer ventana=new RegistrarChofer();
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        dispose();*/
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnRVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRVehiculoActionPerformed
+        RegistrarVehiculo ventana=new RegistrarVehiculo();
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_btnRVehiculoActionPerformed
 
     /**
      * @param args the command line arguments
