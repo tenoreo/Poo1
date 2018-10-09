@@ -70,8 +70,7 @@ public class Correo {
     
     public void enviarCorreoAdjunto(String pChofer,String pTelefono,String pPuntoSalida,String pFecha,String pHora,String[][] ListaViajeros){
         Properties props=new Properties();
-        props.put("mail.transport.host","smtp");
-        props.put("mail.smtp.host","smtp.live.com
+        
     
     }
     
