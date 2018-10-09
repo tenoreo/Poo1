@@ -22,7 +22,8 @@ import org.jdom2.output.XMLOutputter;
  * @author kenda
  */
 public class Xml {
-    public void escribirChofer(String pNombre,String pCorreo,String pTelefono,String pCedula,ArrayList<Licencia> pLicencias) throws IOException{
+    public void escribirChofer(String pNombre,String pCorreo,String pTelefono,
+            String pCedula,ArrayList<Licencia> pLicencias) throws IOException{
         SAXBuilder builder =new SAXBuilder();
         File xmlFile=new File("choferDB.xml");
         try{
@@ -34,9 +35,12 @@ public class Xml {
             nuevo.addContent(new Element("Telefono").setText(pTelefono));
             nuevo.addContent(new Element("Cedula").setText(pCedula));
             Element tLicencias=nuevo.getChild("Licencias");
-            for(int i=0;i<pLicencias.size();i++)
-                tLicencias.addContent(new Element("Licencia").setText(pLicencias.get(i)));
-            raiz.addContent(nuevo);
+            for(int i=0;i<pLicencias.size();i++){
+                tLicencias.addContent(new Element("Tipo").setText(pLicencias.get(i).getTipo()));
+                tLicencias.addContent(new Element("Fecha de Emision").setText(pLicencias.get(i).getFechaEmision()));
+                tLicencias.addContent(new Element("Numero").setText(pLicencias.get(i).getNumero()));
+                tLicencias.addContent(new Element("Fecha de expiracion").setText(pLicencias.get(i).getFechaExpiracion()));
+            }raiz.addContent(nuevo);
             XMLOutputter escribir=new XMLOutputter();
             escribir.setFormat(Format.getPrettyFormat());
             escribir.output(raiz,new FileWriter("pasajerosDB.xml"));
@@ -47,7 +51,8 @@ public class Xml {
         }  
     }
     
-    public void crearXmlChofer(String pNombre,String pCorreo,String pTelefono,String pCedula,ArrayList<Licencia> pLicencias){
+    public void crearXmlChofer(String pNombre,String pCorreo,String pTelefono,
+            String pCedula,ArrayList<Licencia> pLicencias){
         try{
             Element raiz=new Element("Pasajero");// Crea un elemento Valores que sera el padre actualizado
             raiz.setName("Pasajeros");//Establece el nombre del padre nuevo
@@ -58,9 +63,12 @@ public class Xml {
             nuevo.addContent(new Element("Telefono").setText(pTelefono));
             nuevo.addContent(new Element("Cedula").setText(pCedula));
             Element tLicencias=nuevo.getChild("Licencias");
-            for(int i=0;i<pLicencias.size();i++)
-                tLicencias.addContent(new Element("Licencia").setText(pLicencias.get(i)));
-            raiz.addContent(nuevo);
+            for(int i=0;i<pLicencias.size();i++){
+                tLicencias.addContent(new Element("Tipo").setText(pLicencias.get(i).getTipo()));
+                tLicencias.addContent(new Element("Fecha de Emision").setText(pLicencias.get(i).getFechaEmision()));
+                tLicencias.addContent(new Element("Numero").setText(pLicencias.get(i).getNumero()));
+                tLicencias.addContent(new Element("Fecha de expiracion").setText(pLicencias.get(i).getFechaExpiracion()));
+            }raiz.addContent(nuevo);
             //Para guardar el archivo con los nuevos datos
             XMLOutputter escribir=new XMLOutputter();
             escribir.setFormat(Format.getPrettyFormat());
@@ -163,7 +171,8 @@ public class Xml {
         }  
     }
     
-    public void crearXmlUsuario(String pNombre,String pNombreUsuario,String pTelefono,String pContrasenia,String pDepartamento){
+    public void crearXmlUsuario(String pNombre,String pNombreUsuario,String pTelefono,
+            String pContrasenia,String pDepartamento){
         try{
             Element raiz=new Element("Usuario");// Crea un elemento Valores que sera el padre actualizado
             raiz.setName("Usuarios");//Establece el nombre del padre nuevo
@@ -264,7 +273,36 @@ public class Xml {
         }return list;
     }
 
-    public void cargarPasajero(String[] datos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public void escrirbirViaje(String pSalida,String fViaje,String hInicio,String hFinal,
+            String destino,ArrayList<Pasajero> pasajeros) throws IOException{
+        SAXBuilder builder =new SAXBuilder();
+        File xmlFile=new File("viajesDB.xml");
+        try{
+            Document document=(Document)builder.build(xmlFile);
+            Element raiz=document.getRootElement();
+            Element nuevo=new Element("Viaje");
+            nuevo.addContent(new Element("Punto de salida").setText(pSalida));
+            nuevo.addContent(new Element("Fecha viaje").setText(fViaje));
+            nuevo.addContent(new Element("Hora de inicio").setText(hInicio));
+            nuevo.addContent(new Element("Hora Final").setText(hFinal));
+            nuevo.addContent(new Element("Destino").setText(destino));
+            Element tLicencias=nuevo.getChild("Pasajeros");
+            for(int i=0;i<pasajeros.size();i++){
+                tLicencias.addContent(new Element("Nombre").setText(pasajeros.get(i).getNombreCompleto()));
+                tLicencias.addContent(new Element("Fecha de Emision").setText(pasajeros.get(i).getCorreo()));
+                int c=(int) pasajeros.get(i).getCedula();
+                tLicencias.addContent(new Element("Numero").setText(Integer.toString(c)));
+                tLicencias.addContent(new Element("Fecha de expiracion").setText(pasajeros.get(i).getFechaExpiracion()));
+            }
+            raiz.addContent(nuevo);
+            XMLOutputter escribir=new XMLOutputter();
+            escribir.setFormat(Format.getPrettyFormat());
+            escribir.output(raiz,new FileWriter("usuariosDB.xml"));
+            
+            
+        }catch(JDOMException e){
+        
+        }  
     }
 }

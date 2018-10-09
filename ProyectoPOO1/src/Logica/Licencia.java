@@ -12,31 +12,31 @@ import java.util.Date;
  * @author kenda
  */
 public class Licencia {
-    private int numero;
-    private Date fechaEmision;
+    private String numero;
+    private String fechaEmision;
     private String tipo;
-    private Date fechaExpiracion;
+    private String fechaExpiracion;
 
-    public Licencia(int numero, Date fechaEmision, String tipo, Date fechaExpiracion) {
+    public Licencia(String numero, String fechaEmision, String tipo, String fechaExpiracion) {
         this.numero = numero;
         this.fechaEmision = fechaEmision;
         this.tipo = tipo;
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
-    public Date getFechaEmision() {
+    public String getFechaEmision() {
         return fechaEmision;
     }
 
-    public void setFechaEmision(Date fechaEmision) {
+    public void setFechaEmision(String fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 
@@ -48,11 +48,11 @@ public class Licencia {
         this.tipo = tipo;
     }
 
-    public Date getFechaExpiracion() {
+    public String getFechaExpiracion() {
         return fechaExpiracion;
     }
 
-    public void setFechaExpiracion(Date fechaExpiracion) {
+    public void setFechaExpiracion(String fechaExpiracion) {
         this.fechaExpiracion = fechaExpiracion;
     }
     

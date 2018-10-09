@@ -6,10 +6,12 @@
 package Interfaz;
 
 import Logica.Pasajero;
+import Logica.Viaje;
 import Logica.Xml;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -396,12 +398,20 @@ public class SolicitarViaje extends javax.swing.JFrame {
         String destino=tfDestino.getText().trim();
         String cbHInicio=cbbHInicio.getSelectedItem().toString().trim();
         String cbHFinal=cbbHFinal.getSelectedItem().toString().trim();
+        Xml escribirViaje=new Xml();
+        List<Viaje> listaViaje=null; 
         if(pSalida.isEmpty() && fViaje.isEmpty() && hInicio.isEmpty() && hFinal.isEmpty() && destino.isEmpty())
             JOptionPane.showMessageDialog(this,"EL formulario esta incompleto");
         else if(validarPSalida(pSalida))
             JOptionPane.showMessageDialog(this,"El campo de punto de salida esta incorrecto");
         else if(validarFViaje(hInicio) && validarFViaje(hFinal))//gftygfytfytg
             JOptionPane.showMessageDialog(this,"El campo de punto de salida esta incorrecto");
+        else if(validarViajes(hInicio,hFinal,cbHInicio,cbHFinal))
+                JOptionPane.showMessageDialog(this,"La reserva debe ser 24 horas antes de hacer el viaje");
+        else{
+            escribirViaje.escribirViaje();
+            
+        }
     }//GEN-LAST:event_btnSolicitarActionPerformed
     
     public boolean validarPSalida(String text){
@@ -411,6 +421,8 @@ public class SolicitarViaje extends javax.swing.JFrame {
     }
     @SuppressWarnings("empty-statement")
     public boolean validarViajes(String inicio,String finala,String cbHInicio,String cbFinal){
+        
+        //primera hora(la que inicia)
         char inicio1=inicio.charAt(0);
         char inicio2=inicio.charAt(1);
         String ini1=Character.toString(inicio1);
@@ -419,6 +431,7 @@ public class SolicitarViaje extends javax.swing.JFrame {
         int in2=Integer.valueOf(ini2)*1;
         int t1=in1+in2;
         
+        //segunda hora(la que termina)
         char final1=finala.charAt(0);
         char final2=finala.charAt(1);
         String fina1=Character.toString(final1);
@@ -427,6 +440,7 @@ public class SolicitarViaje extends javax.swing.JFrame {
         int fin2=Integer.valueOf(fina2)*1;
         int t2=fin1+fin2;
         
+        //los minutos de inicio
         char inicio3=inicio.charAt(3);
         char inicio4=inicio.charAt(4);
         String ini3=Character.toString(inicio3);
@@ -435,6 +449,8 @@ public class SolicitarViaje extends javax.swing.JFrame {
         int in4=Integer.valueOf(ini4)*1;
         int t3=in3+in4;
         
+        
+        //los minutos de la final
         char final3=finala.charAt(3);
         char final4=finala.charAt(4);
         String fina3=Character.toString(final3);
@@ -443,11 +459,22 @@ public class SolicitarViaje extends javax.swing.JFrame {
         int fin4=Integer.valueOf(fina4)*1;
         int t4=fin3+fin4;
         
+        //dia,mes,ano actual
         Calendar c = Calendar.getInstance();
         String dia=Integer.toString(c.get(Calendar.DATE));
+        int dia1=Integer.parseInt(dia);
         String mes=Integer.toString(c.get(Calendar.MONTH));
+        int mes1=Integer.parseInt(mes);
         String annio = Integer.toString(c.get(Calendar.YEAR));
-        if(t1>t4 && cbHInicio.equals("AM") && cbHFinal.equals() )
+        int annio1=Integer.parseInt(annio);
+        
+        Calendar calendario = new GregorianCalendar();
+        
+        //tiempo actual(hora,minutos y segundos)
+        int hora=calendario.get(Calendar.HOUR_OF_DAY);
+        int minutos= calendario.get(Calendar.MINUTE);
+        int segundos= calendario.get(Calendar.SECOND);
+        return hora>t1 && cbHInicio=="AM";
     }
     public boolean validarFViaje(String text){
         int i=0;
