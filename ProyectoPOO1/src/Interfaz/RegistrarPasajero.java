@@ -195,7 +195,7 @@ public class RegistrarPasajero extends javax.swing.JFrame {
             else if(cedulaRepetida(cedula))
                 JOptionPane.showMessageDialog(this, "Error, esa cedula ya esta en el sistema");
             else{
-                escribirPasajero.escribirPasajero(nombre,correo,direccion,telefono,cedula);
+                escribirPasajero.crearXmlPasajero(nombre,correo,direccion,telefono,cedula);
                 tfCedula.setText("");
                 tfNombre.setText("");
                 tfDireccion.setText("");
