@@ -147,7 +147,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             else if(correoRepetido(correo))
                 JOptionPane.showMessageDialog(this, "Error! Este correo ya esta en el sistema");
             else{
-                xml.escribirUsuario(nombre,departamento,correo,telefono);
+                xml.escribirUsuario(nombre,correo,telefono,departamento);
             }
         } catch (IOException ex) {
             Logger.getLogger(RegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);

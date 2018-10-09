@@ -5,11 +5,13 @@
  */
 package Logica;
 
+import Logica.Cifrado;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.mail.MessagingException;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -171,8 +173,7 @@ public class Xml {
         }  
     }
     
-    public void crearXmlUsuario(String pNombre,String pNombreUsuario,String pTelefono,
-            String pContrasenia,String pDepartamento){
+    public void crearXmlUsuario(String pNombre,String pNombreUsuario,String pTelefono,String pDepartamento) throws MessagingException{
         try{
             Element raiz=new Element("Usuario");// Crea un elemento Valores que sera el padre actualizado
             raiz.setName("Usuarios");//Establece el nombre del padre nuevo
@@ -188,6 +189,8 @@ public class Xml {
             XMLOutputter escribir=new XMLOutputter();
             escribir.setFormat(Format.getPrettyFormat());
             escribir.output(raiz,new FileWriter("usuariosDB.xml"));
+            Correo correo=new Correo();
+            correo.enviarCorreo(pNombreUsuario);
         }catch(IOException e){
         }
     }
@@ -290,19 +293,21 @@ public class Xml {
             Element tLicencias=nuevo.getChild("Pasajeros");
             for(int i=0;i<pasajeros.size();i++){
                 tLicencias.addContent(new Element("Nombre").setText(pasajeros.get(i).getNombreCompleto()));
-                tLicencias.addContent(new Element("Fecha de Emision").setText(pasajeros.get(i).getCorreo()));
+                tLicencias.addContent(new Element("Correo").setText(pasajeros.get(i).getCorreo()));
                 int c=(int) pasajeros.get(i).getCedula();
-                tLicencias.addContent(new Element("Numero").setText(Integer.toString(c)));
-                tLicencias.addContent(new Element("Fecha de expiracion").setText(pasajeros.get(i).getFechaExpiracion()));
+                tLicencias.addContent(new Element("Identificacion").setText(Integer.toString(c)));
+                tLicencias.addContent(new Element("Direccion").setText(pasajeros.get(i).getDireccion1()));
+                int t=(int) pasajeros.get(i).getTelefono();
+                tLicencias.addContent(new Element("Identificacion").setText(Integer.toString(t)));
             }
             raiz.addContent(nuevo);
             XMLOutputter escribir=new XMLOutputter();
             escribir.setFormat(Format.getPrettyFormat());
-            escribir.output(raiz,new FileWriter("usuariosDB.xml"));
-            
+            escribir.output(raiz,new FileWriter("usuariosDB.xml"));            
             
         }catch(JDOMException e){
         
         }  
     }
+
 }

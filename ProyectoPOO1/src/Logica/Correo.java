@@ -6,6 +6,14 @@
 package Logica;
 
 import com.sun.xml.internal.fastinfoset.sax.Properties;
+import java.util.Date;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -64,8 +72,34 @@ public class Correo {
         return abecedario[obtenerNumeroRandom(0,26)];
     }
     
-    public void enviarCorreo(){
-    
+    public void enviarCorreo(String correoReceptor) throws AddressException, MessagingException{
+        boolean depuracion = false;
+        java.util.Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        
+        java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        Session mailSession = Session.getDefaultInstance(props, null);
+        
+        mailSession.setDebug(depuracion);
+        Message msg = new MimeMessage(mailSession);
+        msg.setFrom(new InternetAddress(correo));
+        InternetAddress[] address = {new InternetAddress(correoReceptor)};
+        msg.setRecipients(Message.RecipientType.TO, address);
+        String contra=crearContrasena();
+        msg.setSubject("Nuevo usuario"); msg.setSentDate(new Date());
+            msg.setText("Bienevenido al incorporarse al sistema de buses del Tecnologico de Costa Rica"+
+                    "\n"+"El usuario que debes usar para utilizar la aplicacion es la siguiente:"+
+                    correoReceptor+"\n"+ "Tu contrasena es la siguiente"+contra);
+
+           Transport transport=mailSession.getTransport("smtp");
+           transport.connect("smtp.gmail.com", correo, contrasena);
+           transport.sendMessage(msg, msg.getAllRecipients());
+           transport.close();
+           xml
     }
     
     public void enviarCorreoAdjunto(String pChofer,String pTelefono,String pPuntoSalida,String pFecha,String pHora,String[][] ListaViajeros){

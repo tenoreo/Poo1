@@ -25,16 +25,25 @@ public class Pasajero {
     private String nombreCompleto;
     private long cedula;
     private String lugar;
+    private String direccion1;
     private Direccion direccion;
     private String correo;
     private long telefono;
 
-    public Pasajero(String nombreCompleto, long cedula, String lugar, String correo, long telefono) {
+    public Pasajero(String nombreCompleto, long cedula, String lugar, String correo, long telefono,String direccion1) {
         this.nombreCompleto = nombreCompleto;
         this.cedula = cedula;
-        this.direccion = direccion;
+        this.direccion1 = direccion1;
         this.correo = correo;
         this.telefono = telefono;
+    }
+
+    public String getDireccion1() {
+        return direccion1;
+    }
+
+    public void setDireccion1(String direccion1) {
+        this.direccion1 = direccion1;
     }
 
     public String getLugar() {
